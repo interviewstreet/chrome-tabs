@@ -1,9 +1,9 @@
 {
-  "name": "chrome-tabs",
-  "version": "1.12.0",
-  "main": [
-    "chrome-tabs.js",
-    "chrome-tabs.coffee",
-  ],
-  "ignore": [],
+	"name": "chrome-tabs",
+	"version": "1.12.0",
+	"main": [
+		"chrome-tabs.js",
+		"chrome-tabs.coffee"
+	],
+	"ignore": []
 }
