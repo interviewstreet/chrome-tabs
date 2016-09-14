@@ -1,35 +1,46 @@
 .chrome-tabs-shell {
-  box-sizing: border-box;
   position: relative;
-  font-size: 10px;
-  height: 4.2em;
-  background: linear-gradient(#dad9da, #d9d8d9);
-  padding: 1em 1.2em 0.6em 1.2em;
-  border-radius: 0.5em 0.5em 0 0;
-  box-shadow: 0 0.05em #b7b7b7;
+  background-color: #cccccc;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e1e1e1), color-stop(100%, #b3b3b3));
+  background-image: -webkit-linear-gradient(top, #e1e1e1, #b3b3b3);
+  background-image: -moz-linear-gradient(top, #e1e1e1, #b3b3b3);
+  background-image: -o-linear-gradient(top, #e1e1e1, #b3b3b3);
+  background-image: linear-gradient(top, #e1e1e1, #b3b3b3);
+  padding: 10px 10px 6px 10px;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  -ms-border-radius: 4px 4px 0 0;
+  -o-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  height: 33px;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-.chrome-tabs-shell * {
-  box-sizing: inherit;
-  font-family: inherit;
 }
 .chrome-tabs-shell .chrome-shell-bottom-bar {
   position: absolute;
-  bottom: 0;
-  height: 0.45em;
-  left: 0;
+  bottom: 0px;
+  height: 4px;
+  left: 0px;
   width: 100%;
-  background: #f2f2f2;
-  box-shadow: 0 -0.05em rgba(0,0,0,0.27);
+  border-top: 1px solid rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.6);
+  -moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.6);
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ebebeb), color-stop(100%, #ebebeb));
+  background-image: -webkit-linear-gradient(top, #ebebeb, #ebebeb);
+  background-image: -moz-linear-gradient(top, #ebebeb, #ebebeb);
+  background-image: -o-linear-gradient(top, #ebebeb, #ebebeb);
+  background-image: linear-gradient(top, #ebebeb, #ebebeb);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
   z-index: 20;
 }
 .chrome-tabs-shell.chrome-tabs-sorting .chrome-tabs:not(.chrome-tabs-clone) .chrome-tab:not(.ui-sortable-draggable-item) {
   opacity: 0;
 }
+
 .chrome-tabs {
+  *zoom: 1;
   position: relative;
-  width: 9999em;
 }
 .chrome-tabs:after {
   content: "";
@@ -38,112 +49,208 @@
 }
 .chrome-tabs.chrome-tabs-clone {
   position: absolute;
-  top: 1em;
+  top: 10px;
   pointer-events: none;
 }
 .chrome-tabs.chrome-tabs-clone .chrome-tab {
+  -webkit-transition: left 120ms ease-in-out;
+  -moz-transition: left 120ms ease-in-out;
+  -o-transition: left 120ms ease-in-out;
   transition: left 120ms ease-in-out;
   position: absolute;
+}
+.chrome-tabs * {
+  -webkit-user-select: none;
+  cursor: default;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 13px;
 }
 .chrome-tabs .chrome-tab {
   float: left;
   position: relative;
-  height: 2.8em;
-  width: 24em;
-  border: 0;
-  margin: 0;
+  height: 25px;
+  width: 160px;
+  border: 0px;
+  margin: 0px;
+  z-index: 1;
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), 0 -1px rgba(0, 0, 0, 0.2), -1px 0 rgba(0, 0, 0, 0.2), 1px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), 0 -1px rgba(0, 0, 0, 0.2), -1px 0 rgba(0, 0, 0, 0.2), 1px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), 0 -1px rgba(0, 0, 0, 0.2), -1px 0 rgba(0, 0, 0, 0.2), 1px 0 rgba(0, 0, 0, 0.2);
+}
+.chrome-tabs .chrome-tab, .chrome-tabs .chrome-tab .chrome-tab-curves-left, .chrome-tabs .chrome-tab .chrome-tab-curves-right {
+  background-color: #e6e6e6;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e0e0e0), color-stop(100%, #d0d0d0));
+  background-image: -webkit-linear-gradient(top, #e0e0e0, #d0d0d0);
+  background-image: -moz-linear-gradient(top, #e0e0e0, #d0d0d0);
+  background-image: -o-linear-gradient(top, #e0e0e0, #d0d0d0);
+  background-image: linear-gradient(top, #e0e0e0, #d0d0d0);
+}
+.cssmasks .chrome-tabs .chrome-tab {
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 -1px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 -1px rgba(0, 0, 0, 0.24);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 -1px rgba(0, 0, 0, 0.24);
+  margin: 0 3px 0 20px;
+}
+.chrome-tabs .chrome-tab .chrome-tab-curves {
+  display: none;
+}
+.cssmasks .chrome-tabs .chrome-tab .chrome-tab-curves {
+  display: block;
+}
+.chrome-tabs .chrome-tab .chrome-tab-curves * {
+  position: absolute;
+  width: 20px;
+  height: 24px;
+  -webkit-mask-size: 100%;
+}
+.chrome-tabs .chrome-tab .chrome-tab-curves-left, .chrome-tabs .chrome-tab .chrome-tab-curves-left-highlight, .chrome-tabs .chrome-tab .chrome-tab-curves-left-shadow {
+  -webkit-mask-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyNXB4IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPiAgICA8dGl0bGU+dGFiLWxlZnQ8L3RpdGxlPiAgICA8ZGVzY3JpcHRpb24+TGVmdCBzaWRlIG9mIGEgQ2hyb21lIFRhYjwvZGVzY3JpcHRpb24+ICAgIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgICAgICA8cGF0aCBkPSJNMCwyNCBDMCwyNCAxLjcyMzM4NjY0LDIzLjczNzA2NDUgMywyMyBDMy4zNjg1MDUxNSwyMi43ODcyNDAxIDQuMjc2MDAwODUsMjIuMjIzOTk5MiA0LjUsMjIgQzUuNSwyMSA1LjY0NDMzMzUsMjAuNjAzNzM4NyA1Ljg5NjQ3Mjg0LDE5LjkyMjMxOTEgQzcuMzQ3ODcwNDEsMTUuOTk5ODQyOSAxMi4zNzE0NTAzLDIuNjI4NTQ5NjUgMTQsMSBDMTUsMi43NzU1NTc1NmUtMTcgMTcsMCAxNywwIEwyMCwxLjQzMTE0Njg3ZS0xNyBMMjAsMjUgTDAsMjUgTDAsMjQgWiIgZmlsbD0iIzAwMCI+PC9wYXRoPiAgICA8L2c+PC9zdmc+);
+}
+.chrome-tabs .chrome-tab .chrome-tab-curves-right, .chrome-tabs .chrome-tab .chrome-tab-curves-right-highlight, .chrome-tabs .chrome-tab .chrome-tab-curves-right-shadow {
+  -webkit-mask-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyNXB4IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPiAgICA8dGl0bGU+dGFiLXJpZ2h0PC90aXRsZT4gICAgPGRlc2NyaXB0aW9uPlJpZ2h0IHNpZGUgb2YgYSBDaHJvbWUgVGFiPC9kZXNjcmlwdGlvbj4gICAgPGcgZmlsbC1ydWxlPSJldmVub2RkIj4gICAgICAgIDxwYXRoIGQ9Ik0wLDI0IEMwLDI0IDEuNzIzMzg2NjQsMjMuNzM3MDY0NSAzLDIzIEMzLjM2ODUwNTE1LDIyLjc4NzI0MDEgNC4yNzYwMDA4NSwyMi4yMjM5OTkyIDQuNSwyMiBDNS41LDIxIDUuNjQ0MzMzNSwyMC42MDM3Mzg3IDUuODk2NDcyODQsMTkuOTIyMzE5MSBDNy4zNDc4NzA0MSwxNS45OTk4NDI5IDEyLjM3MTQ1MDMsMi42Mjg1NDk2NSAxNCwxIEMxNSwyLjc3NTU1NzU2ZS0xNyAxNywwIDE3LDAgTDIwLDEuNDMxMTQ2ODdlLTE3IEwyMCwyNSBMMCwyNSBMMCwyNCBaIiBmaWxsPSIjMDAwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCwgMTIuNSkgc2NhbGUoLTEsIDEpIHRyYW5zbGF0ZSgtMTAsIC0xMi41KSI+PC9wYXRoPiAgICA8L2c+PC9zdmc+);
+}
+.chrome-tabs .chrome-tab .chrome-tab-curves-left, .chrome-tabs .chrome-tab .chrome-tab-curves-right {
+  top: 1px;
   z-index: 1;
 }
-.chrome-tabs .chrome-tab,
-.chrome-tabs .chrome-tab * {
-  user-select: none;
-  cursor: default;
+.chrome-tabs .chrome-tab .chrome-tab-curves-left {
+  left: -20px;
 }
-.chrome-tabs .chrome-tab:not(:last-child) {
-  margin-right: -1.4em;
+.chrome-tabs .chrome-tab .chrome-tab-curves-right {
+  right: -20px;
 }
-.chrome-tabs .chrome-tab .chrome-tab-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
+.chrome-tabs .chrome-tab .chrome-tab-curves-left-highlight, .chrome-tabs .chrome-tab .chrome-tab-curves-right-highlight {
+  top: 0px;
+  width: 21px;
+  height: 25px;
+  background-color: #ececec;
 }
-.chrome-tabs .chrome-tab .chrome-tab-background > svg {
-  width: 100%;
-  height: 100%;
+.chrome-tabs .chrome-tab .chrome-tab-curves-left-highlight {
+  left: -21px;
 }
-.chrome-tabs .chrome-tab .chrome-tab-background > svg .chrome-tab-shadow {
-  fill: none;
-  stroke: rgba(0,0,0,0.27);
-  stroke-width: 0.5px;
+.chrome-tabs .chrome-tab .chrome-tab-curves-right-highlight {
+  right: -21px;
 }
-.chrome-tabs .chrome-tab .chrome-tab-background > svg .chrome-tab-background {
-  fill: #d0d0d0;
-  transform: translateX(0.25px) translateY(0.25px);
+.chrome-tabs .chrome-tab .chrome-tab-curves-left-shadow, .chrome-tabs .chrome-tab .chrome-tab-curves-right-shadow {
+  top: -1px;
+  width: 22px;
+  height: 26px;
+  background: rgba(0, 0, 0, 0.29);
+}
+.chrome-tabs .chrome-tab .chrome-tab-curves-left-shadow {
+  left: -22px;
+}
+.chrome-tabs .chrome-tab .chrome-tab-curves-right-shadow {
+  right: -22px;
 }
 .chrome-tabs .chrome-tab.chrome-tab-current {
   z-index: 999;
 }
-.chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-background > svg .chrome-tab-background {
-  fill: #f2f2f2;
+.cssmasks .chrome-tabs .chrome-tab.chrome-tab-current {
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.6), 0 -1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.6), 0 -1px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.6), 0 -1px rgba(0, 0, 0, 0.25);
+}
+.chrome-tabs .chrome-tab.chrome-tab-current, .chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-left, .chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-right {
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eeeeee), color-stop(100%, #ebebeb));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #ebebeb);
+  background-image: -moz-linear-gradient(top, #eeeeee, #ebebeb);
+  background-image: -o-linear-gradient(top, #eeeeee, #ebebeb);
+  background-image: linear-gradient(top, #eeeeee, #ebebeb);
+}
+.chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-left-shadow, .chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-right-shadow {
+  background: rgba(0, 0, 0, 0.34);
+}
+.chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-left-highlight, .chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-right-highlight, .chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-left-shadow, .chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-right-shadow {
+  height: 25px;
+}
+.chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-left-highlight, .chrome-tabs .chrome-tab.chrome-tab-current .chrome-tab-curves-right-highlight {
+  background-color: #f9f9f9;
+}
+.cssmasks .chrome-tabs .chrome-tab:not(.chrome-tab-current):after {
+  pointer-events: none;
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  left: -16px;
+  right: -16px;
+  background: rgba(0, 0, 0, 0.04);
+  height: 1px;
+  z-index: 1;
 }
 .chrome-tabs .chrome-tab .chrome-tab-favicon {
-  position: relative;
-  margin-left: 1.6em;
-  height: 1.6em;
-  width: 1.6em;
-  background-size: 1.6em;
-  margin-top: 0.6em;
+  height: 16px;
+  width: 16px;
+  background-size: 16px;
+  position: absolute;
+  left: 9px;
+  top: 5px;
   z-index: 3;
-  display: inline-block;
-  vertical-align: top;
+}
+.cssmasks .chrome-tabs .chrome-tab .chrome-tab-favicon {
+  left: 0;
+  top: 4px;
 }
 .chrome-tabs .chrome-tab .chrome-tab-title {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  color: #222;
-  padding: 0 0.25em;
+  color: #222222;
+  padding: 5px 30px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 1.2em;
-  margin-top: 0.5em;
-  max-width: calc(100% - 5em);
+}
+.cssmasks .chrome-tabs .chrome-tab .chrome-tab-title {
+  padding: 5px 5px 5px 18px;
 }
 .chrome-tabs .chrome-tab .chrome-tab-close {
   position: absolute;
-  width: 1.4em;
-  height: 1.4em;
+  top: 6px;
+  right: 7px;
+  width: 14px;
+  height: 14px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
   border-radius: 50%;
   z-index: 2;
-  right: 1.4em;
-  top: 0.7em;
-  color: #505050;
+}
+.cssmasks .chrome-tabs .chrome-tab .chrome-tab-close {
+  right: -5px;
+  top: 6px;
 }
 .chrome-tabs .chrome-tab .chrome-tab-close:before {
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
   content: "\00D7";
   position: absolute;
-  display: block;
-  top: 0.05em;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  top: 0px;
+  right: 0px;
+  height: 14px;
+  width: 14px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
   text-align: center;
-  font-size: 1.15em;
-  line-height: 1;
+  font-size: 11px;
+  line-height: 12px;
+  color: #777777;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.3);
 }
-.chrome-tabs .chrome-tab .chrome-tab-close:hover,
-.chrome-tabs .chrome-tab .chrome-tab-close:hover:active {
-  color: #fff;
+.chrome-tabs .chrome-tab .chrome-tab-close:hover:before, .chrome-tabs .chrome-tab .chrome-tab-close:active:before {
+  color: white;
+  text-shadow: 0 1px #b9554c;
 }
-.chrome-tabs .chrome-tab .chrome-tab-close:hover {
-  background: #e25c4b;
+.chrome-tabs .chrome-tab .chrome-tab-close:hover, .chrome-tabs .chrome-tab .chrome-tab-close:active {
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 1px 2px #b9554c;
+  -moz-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 1px 2px #b9554c;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), inset 0 1px 2px #b9554c;
+  background: #dd837b;
 }
-.chrome-tabs .chrome-tab .chrome-tab-close:hover:active {
-  background: #b74a3b;
+.chrome-tabs .chrome-tab .chrome-tab-close:active:before {
+  -webkit-box-shadow: inset 0 0 0 1px #b9554c, inset 0 1px 3px #b9554c, inset 0 0 20px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 0 0 1px #b9554c, inset 0 1px 3px #b9554c, inset 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 0 1px #b9554c, inset 0 1px 3px #b9554c, inset 0 0 20px rgba(0, 0, 0, 0.1);
 }

@@ -1,14 +1,19 @@
 $ = jQuery
 
 tabTemplate = '''
-  <div class="chrome-tab">
-    <div class="chrome-tab-background">
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="topleft" viewBox="0 0 214 29" ><path d="M14.3 0.1L214 0.1 214 29 0 29C0 29 12.2 2.6 13.2 1.1 14.3-0.4 14.3 0.1 14.3 0.1Z"/></symbol><symbol id="topright" viewBox="0 0 214 29"><use xlink:href="#topleft"/></symbol><clipPath id="crop"><rect class="mask" width="100%" height="100%" x="0"/></clipPath></defs><svg width="50%" height="100%" transfrom="scale(-1, 1)"><use xlink:href="#topleft" width="214" height="29" class="chrome-tab-background"/><use xlink:href="#topleft" width="214" height="29" class="chrome-tab-shadow"/></svg><g transform="scale(-1, 1)"><svg width="50%" height="100%" x="-100%" y="0"><use xlink:href="#topright" width="214" height="29" class="chrome-tab-background"/><use xlink:href="#topright" width="214" height="29" class="chrome-tab-shadow"/></svg></g></svg>
+    <div class="chrome-tab">
+        <div class="chrome-tab-favicon"></div>
+        <div class="chrome-tab-title"></div>
+        <div class="chrome-tab-close"></div>
+        <div class="chrome-tab-curves">
+            <div class="chrome-tab-curves-left-shadow"></div>
+            <div class="chrome-tab-curves-left-highlight"></div>
+            <div class="chrome-tab-curves-left"></div>
+            <div class="chrome-tab-curves-right-shadow"></div>
+            <div class="chrome-tab-curves-right-highlight"></div>
+            <div class="chrome-tab-curves-right"></div>
+        </div>
     </div>
-    <div class="chrome-tab-favicon"></div>
-    <div class="chrome-tab-title"></div>
-    <div class="chrome-tab-close"></div>
-  </div>
 '''
 
 defaultNewTabData =
@@ -24,8 +29,8 @@ chromeTabs =
     $.extend options.$shell.data(), options
     options.$shell.prepend animationStyle
     options.$shell
-      .find('.chrome-tab').each ->
-        $(@).data().tabData = { data: {} }
+    .find('.chrome-tab').each ->
+      $(@).data().tabData = { data: {} }
 
     render = ->
       chromeTabs.render options.$shell
@@ -38,7 +43,20 @@ chromeTabs =
     chromeTabs.fixZIndexes $shell
     chromeTabs.setupEvents $shell
     chromeTabs.setupSortable $shell
+    chromeTabs.setStyle $shell
     $shell.trigger('chromeTabRender')
+
+  setStyle: ($shell) ->
+    if document.body.style['-webkit-mask-repeat'] isnt undefined
+      $shell.addClass('cssmasks')
+      if $shell.data().style == "firefox"
+        $shell.removeClass("cssmasks")
+        $shell.addClass("no-cssmasks")
+      else
+        $shell.removeClass("no-cssmasks")
+        $shell.addClass("cssmasks")
+    else
+      $shell.addClass('no-cssmasks')
 
   setupSortable: ($shell) ->
     $tabs = $shell.find('.chrome-tabs')
@@ -115,10 +133,10 @@ chromeTabs =
       $tab = $ @
       left = $tab.offset().left - offsetLeft - parseInt($tabs.first().css('marginLeft'), 10)
       styleHTML += """
-        .chrome-tabs-clone .chrome-tab:nth-child(#{ i + 1 }) {
-          left: #{ left }px
-        }
-      """
+                .chrome-tabs-clone .chrome-tab:nth-child(#{ i + 1 }) {
+                    left: #{ left }px
+                }
+            """
     animationStyle.innerHTML = styleHTML
 
   fixZIndexes: ($shell) ->
@@ -131,32 +149,35 @@ chromeTabs =
       $tab.data zIndex: zIndex
 
   setupEvents: ($shell) ->
-    $shell.unbind('dblclick').bind 'dblclick', ->
-      chromeTabs.addNewTab $shell
+    unless $shell.data().noAdd
+      $shell.unbind('dblclick').bind 'dblclick', ->
+        chromeTabs.addNewTab $shell
 
-    $shell.unbind('mouseup').bind 'mouseup', (e) ->
-      if e.which == 2 and e.target.className != 'chrome-tab-title'
-        return chromeTabs.addNewTab($shell)
-      return
-
-    $shell.find('.chrome-tab').each ->
-      $tab = $ @
+    $shell.find('.chrome-tab').each (index, tab) =>
+      $tab = $ tab
 
       $tab.unbind('click').click ->
         chromeTabs.setCurrentTab $shell, $tab
 
-      $tab.unbind('mouseup').mouseup (e) ->
-        if e.which == 2
-          return chromeTabs.closeTab($shell, $tab)
-        return
-
-      $tab.find('.chrome-tab-close').unbind('click').click ->
-        chromeTabs.closeTab $shell, $tab
+      $tab.find('.chrome-tab-close').unbind('click').click =>
+        if $shell.data().closeHandler && typeof $shell.data().closeHandler == "function"
+          if $shell.data().closeHandler $shell, $tab
+            chromeTabs.closeTab $shell, $tab
+        else
+          chromeTabs.closeTab $shell, $tab
 
   addNewTab: ($shell, newTabData) ->
     $newTab = $ tabTemplate
+    if $shell.data().noClose then $newTab.find('.chrome-tab-close').remove()
     $shell.find('.chrome-tabs').append $newTab
     tabData = $.extend true, {}, defaultNewTabData, newTabData
+    if newTabData["attr"]
+      for key, value of newTabData["attr"]
+        $newTab.attr key, value
+    if newTabData.class?
+      $newTab.addClass newTabData["class"]
+    if newTabData["noClose"]
+      $newTab.find(".chrome-tab-close").remove()
     chromeTabs.updateTab $shell, $newTab, tabData
     chromeTabs.setCurrentTab $shell, $newTab
 
@@ -174,8 +195,10 @@ chromeTabs =
     $tab.remove()
     chromeTabs.render $shell
 
+
   updateTab: ($shell, $tab, tabData) ->
     $tab.find('.chrome-tab-title').html tabData.title
+    $tab.attr 'title', tabData.title
     $tab.find('.chrome-tab-favicon').css backgroundImage: "url('#{tabData.favicon}')"
     $tab.data().tabData = tabData
 
